@@ -1,65 +1,68 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Link from 'next/link'
+import Layout, { siteTitle } from '../components/layout'
+import { getSortedPostsData } from '../lib/posts'
+import Date from '../components/date'
 
-export default function Home() {
+export function getStaticProps() {
+  const postsData = getSortedPostsData()
+  return {
+    props: {
+      postsData
+    }
+  }
+}
+
+export default function Home ({ postsData }) {
   return (
-    <div className={styles.container}>
+    <Layout home>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{siteTitle}</title>
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+      <section className="my-10 text-xl leading-relaxed">
+        <p>Hello, I’m <span className="font-semibold">Chidera</span>. I’m a software engineer, structural engineer and musician.
+          You can contact me on{' '}
+          <span className="text-blue-600 hover:text-blue-500 inline-block">
+            <a className="flex items-center" href="https://twitter.com/_chideraugo">Twitter
+              <svg className="w-5 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </span> or {' '}
+          <span className="text-blue-600 hover:text-blue-500 inline-block">
+            <a className="flex items-center" href="https://twitter.com/_chideraugo">Instagram
+              <svg className="w-5 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </span>
         </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <p className="mt-6">
+          This app was built with Next.js - the React framwork. To learn more, you can check out the{' '}
+          <span className="text-blue-600 hover:text-blue-500 inline-block">
+            <a className="flex items-center" href="https://nextjs.org/learn">Next.js tutorial
+              <svg className="w-5 ml-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </span>
+        </p>
+      </section>
+      <section className="mt-12">
+        <h2 className="font-extrabold text-3xl mb-8">Blog</h2>
+        <div className="">
+          <ul>
+            {postsData.map(({ id, date, title }) => (
+              <li className="mb-8" key={id}>
+                <Link href={`/posts/${id}`}>
+                  <a className='font-medium text-xl text-blue-600 hover:underline'>{title}</a>
+                </Link>
+                <h4 className='mt-3 text-gray-500'><Date dateString={date} /></h4>
+              </li>
+            ))}
+          </ul>
         </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className={styles.logo} />
-        </a>
-      </footer>
-    </div>
+      </section>
+    </Layout>
   )
 }
