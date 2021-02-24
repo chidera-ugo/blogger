@@ -7,7 +7,7 @@ export const siteTitle = "Chidera's Blog"
 
 export default function Layout ({ children, home }) {
   return (
-    <div className='font-main text-black px-6 lg:p-0 max-w-2xl m-12 mx-auto'>
+    <div className='font-main text-black px-6 md:px-10 lg:p-0 max-w-2xl m-12 mx-auto'>
       <Head>
         <link rel='icon' href='/favicon.ico' />
         <meta
