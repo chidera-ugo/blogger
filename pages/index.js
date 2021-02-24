@@ -20,7 +20,7 @@ export default function Home ({ postsData }) {
         <title>{siteTitle}</title>
       </Head>
       <section className="my-10 text-xl leading-relaxed">
-        <p>Hello, I’m <span className="font-semibold">Chukwudera</span>. I’m a software engineer, structural engineer and musician.
+        <p>Hello, I’m <span className="font-semibold">Chidera</span>. I’m a software engineer, structural engineer and musician.
           You can contact me on{' '}
           <span className="text-blue-600 hover:text-blue-500 inline-block">
             <a className="flex items-center" href="https://twitter.com/_chideraugo">Twitter
