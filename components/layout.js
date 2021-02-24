@@ -34,7 +34,7 @@ export default function Layout ({ children, home }) {
       {!home && (
         <div className='mt-12'>
           <Link href='/'>
-            <a className="text-blue-600 font-semibold text-xl hover:underline">Back to home</a>
+            <a className="text-blue-600 text-xl hover:underline">Back to home</a>
           </Link>
         </div>
       )}
