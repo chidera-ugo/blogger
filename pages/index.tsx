@@ -3,8 +3,9 @@ import Link from 'next/link'
 import Layout, { siteTitle } from '../components/layout'
 import { getSortedPostsData } from '../lib/posts'
 import Date from '../components/date'
+import { GetStaticProps } from 'next'
 
-export function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const postsData = getSortedPostsData()
   return {
     props: {
@@ -13,7 +14,15 @@ export function getStaticProps() {
   }
 }
 
-export default function Home ({ postsData }) {
+export default function Home ({
+  postsData
+}: {
+  postsData: {
+    date: string
+    title: string
+    id: string
+  }[]
+}) {
   return (
     <Layout home>
       <Head>
