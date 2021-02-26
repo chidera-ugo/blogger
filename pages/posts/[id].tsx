@@ -26,8 +26,8 @@ export default function Post({
 }: {
     postContent: {
         title: string
-        data: string
-        contentHtml: string
+        date: string
+        blogHtml: string
     }
 }) {
     return (
