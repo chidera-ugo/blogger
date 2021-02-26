@@ -5,7 +5,7 @@ import Image from 'next/image'
 const name = 'Chidera Ugo'
 export const siteTitle = "Chidera's Blog"
 
-export default function Layout ({ children, home }) {
+export default function Layout ({ children, home }: { children: React.ReactNode, home?: boolean}) {
   return (
     <div className='font-main text-black px-6 md:px-10 lg:p-0 max-w-2xl m-12 mx-auto'>
       <Head>
